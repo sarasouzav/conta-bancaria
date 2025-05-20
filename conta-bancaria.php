@@ -3,7 +3,7 @@
 
 $conta = [
     "titular" => "Sara Viana",
-    "saldo" => "1_000",
+    "saldo" => "1_000.00",
 ];
 
 $menu = [
@@ -28,7 +28,7 @@ while ($numero != 4){
 
 switch ($numero) {
     case 1:
-        echo "\n Saldo atual:" . $conta["saldo"] . "\n";
+        echo "\n Saldo atual: R$" . number_format($conta["saldo"], 2) . "\n";
         echo "\n Digite 4 para sair do programa ou 5 para voltar ao menu . \n";
         $numero = (int) fgets(STDIN);
         break;
@@ -55,11 +55,17 @@ switch ($numero) {
     case 3:
         echo "Informe o valor a ser depositado: \n ";
         $deposito = (float) fgets(STDIN);
+        if($deposito > 0) {
         $valorDeposito = $conta["saldo"] + $deposito;
         $conta["saldo"] = $valorDeposito;
         echo "\n Depósito realizado com sucesso! \n ";
         echo "\n Digite 4 para sair do programa ou 5 para voltar ao menu . \n";
-        $numero = (int) fgets(STDIN);
+        $numero = (int) fgets(STDIN); 
+        } else {
+            echo "\n O valor do depósito não pode ser igual ou menos que 0. \n";
+            echo "\n Digite 4 para sair do programa ou 5 para voltar ao menu . \n";
+            $numero = (int) fgets(STDIN); 
+        }
       
         break;
 
@@ -67,6 +73,8 @@ switch ($numero) {
     case 4:
         echo "Fim do programa.";
         exit();
+
+    
 }
 
 if ($numero == 5) {
@@ -76,7 +84,7 @@ if ($numero == 5) {
 
     echo "***********************\n
     Selecione uma opção: \n" .
-        $menu["1"] . "\n" . $menu["2"] . "\n" . $menu["3"] . "\n" . $menu["4"] . "\n";
+        $menu["1"] . "\n" . $menu["2"] . "\n" . $menu["3"] . "\n" . $menu["4"] . "\n" ; 
 }
 }
 
